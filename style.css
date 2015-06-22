@@ -93,7 +93,7 @@ button#genMD {
   max-width: calc(53em + 40px);
   margin-top: 80px !important; /* Header size */
   overflow-y: scroll;
-  max-height: calc(100vh - 80px); /* - Header + padding */
+  max-height: calc(100vh - 120px); /* - Header + padding */
   border-bottom: 0;
   margin: 10px auto;
   background-color: #fff;
