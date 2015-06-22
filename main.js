@@ -63,15 +63,19 @@ function generateJSON(){
   obj.star = document.getElementById('starName').value;
   obj.region = document.getElementById('region').value;
   obj.discoverer = document.getElementById('discoverer').value;
-  obj.atmosphere = [];
-  arr = document.querySelectorAll('#atmosphere input');
-  for (var i = 0; i < arr.length; i++)
-    obj.atmosphere[i] = arr[i].value;
   obj.general = {};
   obj.general.space = [];
   var arr = document.querySelectorAll('#spaceFeatures input');
   for (var i = 0; i < arr.length; i++)
     obj.general.space[i] = arr[i].value;
+  obj.general.atmosphere = [];
+  arr = document.querySelectorAll('#atmosphere input');
+  for (var i = 0; i < arr.length; i++)
+    obj.general.atmosphere[i] = arr[i].value;
+  obj.general.minerals = [];
+  arr = document.querySelectorAll('#minerals input');
+  for (var i = 0; i < arr.length; i++)
+    obj.general.minerals[i] = arr[i].value;
   obj.general.ground = [];
   arr = document.querySelectorAll('#ground input');
   for (var i = 0; i < arr.length; i++)
@@ -145,8 +149,13 @@ function generateMarkdown(){
   for (var i = 0; i < arr.length; i++){
     md += '* '+ arr[i].value +'<br>';
   }
-  md += '<br>##Planet Features: <br><br>###Atmosphere: <br><br>'
+  md += '<br>##Planet Features: <br>###Atmosphere: <br><br>'
   var arr = document.querySelectorAll('#atmosphere input');
+  for (var i = 0; i < arr.length; i++){
+    md += '* '+ arr[i].value +'<br>';
+  }
+  md += '<br>###Minerals: <br><br>'
+  var arr = document.querySelectorAll('#minerals input');
   for (var i = 0; i < arr.length; i++){
     md += '* '+ arr[i].value +'<br>';
   }
