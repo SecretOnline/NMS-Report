@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>No Man's Sky Report Generator</title>
+    <meta name="theme-color" content="#A4443C">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <header>
+        <h1 class="title">No Man's Sky Report Generator</h1>
+    </header>
+    <main>
+      <div id="planetDetails">
+      <h2>Planet Details</h2>
+      <p>Beacon Number: <input id="beacon" type="text"></p>
+      <p>Planet Name: <input id="planetName" type="text"></p>
+      <p>Star Name: <input id="starName" type="text"></p>
+      <p>Region: <input id="region" type="text"></p>
+      <p>Discoverer: <input id="discoverer" type="text"></p>
+      </div>
+      <div id="spaceFeatures" class="inputContainer">
+        <h2>Space Features</h2>
+      </div>
+      <h2>Planet Features</h2>
+      <div id="atmosphere" class="inputContainer">
+        <h3>Atmosphere</h3>
+        <p><em>e.g. Oxygen: 53%</em></p>
+      </div>
+      <h3>Ground</h3>
+      <div id="ground" class="inputContainer">
+        <h4>General Description</h4>
+      </div>
+      <div id="groundPlants" class="detailContainer">
+        <h4>Ground Plants</h4>
+      </div>
+      <div id="trees" class="detailContainer">
+        <h4>Trees</h4>
+      </div>
+      <div id="groundAnimals" class="detailContainer">
+        <h4>Animals</h4>
+      </div>
+      <h3>Water</h3>
+      <div id="water" class="inputContainer">
+        <h4>General Description</h4>
+      </div>
+      <div id="waterPlants" class="detailContainer">
+        <h4>Aquatic Plants</h4>
+      </div>
+      <div id="fish" class="detailContainer">
+        <h4>Fish</h4>
+      </div>
+      <button type="button" id="genMD">Generate Markdown</button>
+    </main>
+  </body>
+</html>
