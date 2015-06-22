@@ -148,7 +148,7 @@ function generateMarkdown(){
     md += '#Planet Name: ' + document.getElementById('planetName').value + '<br>';
   }
   if (document.getElementById('starName').value !== ""){
-    md += '<br>#Star Name: ' + document.getElementById('starName').value + '<br>';
+    md += '#Star Name: ' + document.getElementById('starName').value + '<br>';
   }
   if (document.getElementById('region').value !== ""){
     md += '#Region: ' + document.getElementById('region').value + '<br>';
