@@ -148,13 +148,13 @@ function generateMarkdown(){
     md += '#Planet Name: ' + document.getElementById('planetName').value + '<br>';
   }
   if (document.getElementById('starName').value !== ""){
-    md += '<br>#Star Name: ' + document.getElementById('starName').value;
+    md += '<br>#Star Name: ' + document.getElementById('starName').value + '<br>';
   }
   if (document.getElementById('region').value !== ""){
     md += '#Region: ' + document.getElementById('region').value + '<br>';
   }
   if (document.getElementById('discoverer').value !== ""){
-    md += '#Discoverer: ' + document.getElementById('discoverer').value;
+    md += '#Discoverer: ' + document.getElementById('discoverer').value + '<br>';
   }
   if (md !== ""){
     md += '<br><br>';
@@ -210,7 +210,7 @@ function generateMarkdown(){
       md += '<br><br>';
       var bullets = arr[i].querySelectorAll('.input input');
       for (var j = 0; j < bullets.length; j++){
-        md += '* '+ bullets[j].value +'<br>';
+        md += '* '+ bullets[j].value +'<br><br>';
       }
     }
   }
@@ -225,7 +225,7 @@ function generateMarkdown(){
       md += '<br><br>';
       var bullets = arr[i].querySelectorAll('.input input');
       for (var j = 0; j < bullets.length; j++){
-        md += '* '+ bullets[j].value +'<br>';
+        md += '* '+ bullets[j].value +'<br><br>';
       }
     }
   }
@@ -240,7 +240,7 @@ function generateMarkdown(){
       md += '<br><br>';
       var bullets = arr[i].querySelectorAll('.input input');
       for (var j = 0; j < bullets.length; j++){
-        md += '* '+ bullets[j].value +'<br>';
+        md += '* '+ bullets[j].value +'<br><br>';
       }
     }
   }
@@ -273,7 +273,7 @@ function generateMarkdown(){
       md += '<br><br>';
       var bullets = arr[i].querySelectorAll('.input input');
       for (var j = 0; j < bullets.length; j++){
-        md += '* '+ bullets[j].value +'<br>';
+        md += '* '+ bullets[j].value +'<br><br>';
       }
     }
   }
@@ -288,7 +288,7 @@ function generateMarkdown(){
       md += '<br><br>';
       var bullets = arr[i].querySelectorAll('.input input');
       for (var j = 0; j < bullets.length; j++){
-        md += '* '+ bullets[j].value +'<br>';
+        md += '* '+ bullets[j].value +'<br><br>';
       }
     }
   }
