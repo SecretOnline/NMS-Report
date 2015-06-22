@@ -1,5 +1,6 @@
 #No Man's Sky Report Generator
 
+Go to [secretonline.github.io/NMS-Report](https://secretonline.github.io/NMS-Report) for a live version.
 
 ##Credits
 
