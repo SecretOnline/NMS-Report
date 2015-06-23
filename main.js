@@ -63,7 +63,6 @@ function addAddButton(parent){
     showModal('Uh Oh.<br>Something went wrong trying to add a button to ' + parent.id + '. Please report this issue on <a href="https://github.com/SecretOnline/NMS-Report">GitHub</a>.');
     return;
   }
-  
   parent.appendChild(button);
 }
 function addRemoveButton(parent){
@@ -168,94 +167,163 @@ function generateJSON(){
   return JSON.stringify(obj);
 }
 function generateMarkdown(){
-  var md = '#Beacon Number: ' + document.getElementById('beacon').value + '<br>#Planet Name: ' + document.getElementById('planetName').value + '<br>#Star Name: ' + document.getElementById('starName').value + '<br>#Region: ' + document.getElementById('region').value + '<br>#Discoverer: ' + document.getElementById('discoverer').value + '<br><br>##Space Features: <br><br>';
-  var arr = document.querySelectorAll('#spaceFeatures input');
-  for (var i = 0; i < arr.length; i++){
-    md += '* '+ arr[i].value +'<br>';
+  var md = "";
+  if (document.getElementById('beacon').value !== ""){
+    md += '#Beacon Number: ' + document.getElementById('beacon').value + '<br>';
   }
-  md += '<br>##Planet Features: <br>###Atmosphere: <br><br>'
-  var arr = document.querySelectorAll('#atmosphere input');
-  for (var i = 0; i < arr.length; i++){
-    md += '* '+ arr[i].value +'<br>';
+  if (document.getElementById('planetName').value !== ""){
+    md += '#Planet Name: ' + document.getElementById('planetName').value + '<br>';
   }
-  md += '<br>###Minerals: <br><br>'
-  var arr = document.querySelectorAll('#minerals input');
-  for (var i = 0; i < arr.length; i++){
-    md += '* '+ arr[i].value +'<br>';
+  if (document.getElementById('starName').value !== ""){
+    md += '#Star Name: ' + document.getElementById('starName').value + '<br>';
   }
-  md += '<br>###General Description: <br><br>'
-  var arr = document.querySelectorAll('#ground input');
-  for (var i = 0; i < arr.length; i++){
-    md += '* '+ arr[i].value +'<br>';
+  if (document.getElementById('region').value !== ""){
+    md += '#Region: ' + document.getElementById('region').value + '<br>';
   }
-  md += '<br>###Ground: <br>####Plants: <br><br>';
-  var arr = document.querySelectorAll('#groundPlants .detail');
-  for (var i = 0; i < arr.length; i++){
-    if (arr[i].querySelector('.image').value)
-      md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
-    else
-      md += '**' + arr[i].querySelector('.name').value + '**';
-    md += '<br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
-    var bullets = arr[i].querySelectorAll('.input input');
-    for (var j = 0; j < bullets.length; j++){
-      md += '* '+ bullets[j].value +'<br>';
-    }
+  if (document.getElementById('discoverer').value !== ""){
+    md += '#Discoverer: ' + document.getElementById('discoverer').value + '<br>';
   }
-  md += '<br>####Trees: <br><br>';
-  var arr = document.querySelectorAll('#trees .detail');
-  for (var i = 0; i < arr.length; i++){
-    if (arr[i].querySelector('.image').value)
-      md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
-    else
-      md += '**' + arr[i].querySelector('.name').value + '**';
-    md += '<br>**Bark Color:** ' + arr[i].querySelector('.bark').value + '<br><br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
-    var bullets = arr[i].querySelectorAll('.input input');
-    for (var j = 0; j < bullets.length; j++){
-      md += '* '+ bullets[j].value +'<br>';
-    }
-  }
-  md += '<br>####Ground Creatures: <br><br>';
-  var arr = document.querySelectorAll('#groundAnimals .detail');
-  for (var i = 0; i < arr.length; i++){
-    if (arr[i].querySelector('.image').value)
-      md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
-    else
-      md += '**' + arr[i].querySelector('.name').value + '**';
-    md += '<br>**Legs:** ' + arr[i].querySelector('.legs').value + '<br><br>';
-    var bullets = arr[i].querySelectorAll('.input input');
-    for (var j = 0; j < bullets.length; j++){
-      md += '* '+ bullets[j].value +'<br>';
-    }
-  }
-  md += '<br>###Water: <br>####General Information: <br><br>'
-  var arr = document.querySelectorAll('#water input');
-  for (var i = 0; i < arr.length; i++){
-    md += '* '+ arr[i].value +'<br>';
-  }
-  md += '<br>####Plants: <br><br>';
-  var arr = document.querySelectorAll('#waterPlants .detail');
-  for (var i = 0; i < arr.length; i++){
-    if (arr[i].querySelector('.image').value)
-      md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
-    else
-      md += '**' + arr[i].querySelector('.name').value + '**';
-    md += '<br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
-    var bullets = arr[i].querySelectorAll('.input input');
-    for (var j = 0; j < bullets.length; j++){
-      md += '* '+ bullets[j].value +'<br>';
-    }
-  }
-  md += '<br>####Fish: <br><br>';
-  var arr = document.querySelectorAll('#fish .detail');
-  for (var i = 0; i < arr.length; i++){
-    if (arr[i].querySelector('.image').value)
-      md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
-    else
-      md += '**' + arr[i].querySelector('.name').value + '**';
+  if (md !== ""){
     md += '<br><br>';
-    var bullets = arr[i].querySelectorAll('.input input');
-    for (var j = 0; j < bullets.length; j++){
-      md += '* '+ bullets[j].value +'<br>';
+  }
+  var arr = document.querySelectorAll('#spaceFeatures input');
+  if (arr.length !== 0){
+    md += '##Space Features: <br><br>';
+    for (var i = 0; i < arr.length; i++){
+      md += '* '+ arr[i].value +'<br>';
+    }
+    md += '<br><br>';
+  }
+  //if any of the subsections of "planet features" have data, then add the features heading
+  if (document.querySelector('#atmosphere input') ||
+      document.querySelector('#ground input') ||
+      document.querySelector('#groundPlants .detail') ||
+      document.querySelector('#trees .detail') ||
+      document.querySelector('#groundAnimals .detail') ||
+      document.querySelector('#water input') ||
+      document.querySelector('#waterPlants .detail') ||
+      document.querySelector('#fish .detail')){
+    md += '##Planet Features: <br><br>'
+  }
+  var arr = document.querySelectorAll('#atmosphere input');
+  if (arr.length !== 0){
+    md += '###Atmosphere: <br><br>';
+    for (var i = 0; i < arr.length; i++){
+      md += '* '+ arr[i].value +'<br>';
+    }
+    md += '<br>'
+  }
+  if (document.querySelector('#ground input') ||
+      document.querySelector('#groundPlants .detail') ||
+      document.querySelector('#trees .detail') ||
+      document.querySelector('#groundAnimals .detail')){
+    md += '###Ground:';
+  }
+  var arr = document.querySelectorAll('#minerals input');
+  if (arr.length !== 0) {
+    md += '<br>###Minerals: <br><br>'
+    for (var i = 0; i < arr.length; i++){
+      md += '* '+ arr[i].value +'<br>';
+    }
+  }
+  var arr = document.querySelectorAll('#ground input');
+  if (arr.length !== 0){
+    md += '<br>###General Description: <br><br>'
+    for (var i = 0; i < arr.length; i++){
+      md += '* '+ arr[i].value +'<br>';
+    }
+  }
+  var arr = document.querySelectorAll('#groundPlants .detail');
+  if(arr.length !== 0){
+    md += '<br>####Plants: <br><br>';
+    for (var i = 0; i < arr.length; i++){
+      if (arr[i].querySelector('.image').value)
+        md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
+      else
+        md += '**' + arr[i].querySelector('.name').value + '**';
+    md += '<br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
+      var bullets = arr[i].querySelectorAll('.input input');
+      for (var j = 0; j < bullets.length; j++){
+        md += '* '+ bullets[j].value +'<br><br>';
+      }
+    }
+  }
+  var arr = document.querySelectorAll('#trees .detail');
+  if (arr.length !== 0){
+    md += '<br>####Trees: <br><br>';
+    for (var i = 0; i < arr.length; i++){
+      if (arr[i].querySelector('.image').value)
+        md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
+      else
+        md += '**' + arr[i].querySelector('.name').value + '**';
+    md += '<br>**Bark Color:** ' + arr[i].querySelector('.bark').value + '<br><br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
+      var bullets = arr[i].querySelectorAll('.input input');
+      for (var j = 0; j < bullets.length; j++){
+        md += '* '+ bullets[j].value +'<br><br>';
+      }
+    }
+  }
+  var arr = document.querySelectorAll('#groundAnimals .detail');
+  if (arr.length !== 0){
+    md += '<br>####Ground Creatures: <br><br>';
+    for (var i = 0; i < arr.length; i++){
+      if (arr[i].querySelector('.image').value)
+        md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
+      else
+          md += '**' + arr[i].querySelector('.name').value + '**';
+    md += '<br>**Legs:** ' + arr[i].querySelector('.legs').value + '<br><br>';
+      var bullets = arr[i].querySelectorAll('.input input');
+      for (var j = 0; j < bullets.length; j++){
+        md += '* '+ bullets[j].value +'<br><br>';
+      }
+    }
+  }
+  if (document.querySelector('#ground input') ||
+      document.querySelector('#groundPlants .detail') ||
+      document.querySelector('#trees .detail') ||
+      document.querySelector('#groundAnimals .detail')){
+    md += '<br>';
+  }
+  if (document.querySelector('#water input') ||
+      document.querySelector('#waterPlants .detail') ||
+      document.querySelector('#fish .detail')){
+    md += '###Water:';
+  }
+  var arr = document.querySelectorAll('#water input');
+  if (arr.length !== 0){
+    md += '<br>####General Information: <br><br>';
+    for (var i = 0; i < arr.length; i++){
+      md += '* '+ arr[i].value +'<br>';
+    }
+  }
+  var arr = document.querySelectorAll('#waterPlants .detail');
+  if (arr.length !== 0){
+    md += '<br>####Plants: <br><br>';
+    for (var i = 0; i < arr.length; i++){
+      if (arr[i].querySelector('.image').value)
+        md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
+      else
+        md += '**' + arr[i].querySelector('.name').value + '**';
+    md += '<br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
+      var bullets = arr[i].querySelectorAll('.input input');
+      for (var j = 0; j < bullets.length; j++){
+        md += '* '+ bullets[j].value +'<br><br>';
+      }
+    }
+  }
+  var arr = document.querySelectorAll('#fish .detail');
+  if (arr.length !== 0){
+    md += '<br>####Fish: <br><br>';
+    for (var i = 0; i < arr.length; i++){
+      if (arr[i].querySelector('.image').value)
+        md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
+      else
+        md += '**' + arr[i].querySelector('.name').value + '**';
+      md += '<br><br>';
+      var bullets = arr[i].querySelectorAll('.input input');
+      for (var j = 0; j < bullets.length; j++){
+        md += '* '+ bullets[j].value +'<br><br>';
+      }
     }
   }
   return md;
