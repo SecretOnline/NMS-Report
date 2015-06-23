@@ -21,10 +21,13 @@ function addInput(parent){
   addRemoveButton(newEl);
   parent.appendChild(newEl);
 }
-function addDetail(parent){
+function addDetail(parent, inner){
   'use strict';
   var newEl = document.createElement('p');
-  newEl.innerHTML = 'Name: <input type="text" class="name"><br>Image URL <em>(Optional)</em>: <input type="text" class="image"><br>Bullets: ';
+  if (inner)
+    newEl.innerHTML = inner;
+  else
+    newEl.innerHTML = 'Name: <input type="text" class="name"><br>Image URL <em>(Optional)</em>: <input type="text" class="image"><br>Bullets: ';
   newEl.classList.add('detail');
   newEl.classList.add('inputContainer');
   addAddButton(newEl);
@@ -32,18 +35,34 @@ function addDetail(parent){
   addInput(newEl);
   parent.appendChild(newEl);
 }
-function removeInput(element){
-  element.parentNode.removeChild(element);
+function addAnimal(parent){
+  addDetail(parent, 'Name: <input type="text" class="name"><br>Image URL <em>(Optional)</em>: <input type="text" class="image"><br>Number of Legs: <input type="number" class="legs"><br>Bullets: ');
+}
+function addPlant(parent){
+  addDetail(parent, 'Name: <input type="text" class="name"><br>Image URL <em>(Optional)</em>: <input type="text" class="image"><br>Foliage Color: <input type="text" class="color"><br>Bullets: ');
+}
+function addTree(parent){
+  addDetail(parent, 'Name: <input type="text" class="name"><br>Image URL <em>(Optional)</em>: <input type="text" class="image"><br>Bark Color: <input type="text" class="bark"><br>Foliage Color: <input type="text" class="color"><br>Bullets: ');
 }
 function addAddButton(parent){
   var button = document.createElement('button')
   button.type = 'button';
   button.innerHTML = '<img src="ic_add_black_24px.svg" alt="ADD">';
   button.classList.add('add');
-  if (parent.classList.contains('inputContainer'))
+  if (parent.id === 'groundAnimals')
+    button.addEventListener('click', function(){addAnimal(this.parentNode);});
+  else if (parent.id === 'groundPlants' || parent.id === 'waterPlants')
+    button.addEventListener('click', function(){addPlant(this.parentNode);});
+  else if (parent.id === 'trees')
+    button.addEventListener('click', function(){addTree(this.parentNode);});
+  else if (parent.classList.contains('inputContainer'))
     button.addEventListener('click', function(){addInput(this.parentNode);});
-  else
+  else if (parent.classList.contains('detailContainer'))
     button.addEventListener('click', function(){addDetail(this.parentNode);});
+  else {
+    showModal('Uh Oh.<br>Something went wrong trying to add a button to ' + parent.id + '. Please report this issue on <a href="https://github.com/SecretOnline/NMS-Report">GitHub</a>.');
+    return;
+  }
   
   parent.appendChild(button);
 }
@@ -52,12 +71,12 @@ function addRemoveButton(parent){
   button.type = 'button';
   button.innerHTML = '<img src="ic_delete_black_24px.svg" alt="REMOVE">';
   button.classList.add('remove');
-  button.addEventListener('click', function(){removeInput(this.parentNode);});
+  button.addEventListener('click', function(){this.parentNode.parentNode.removeChild(this.parentNode);});
   parent.appendChild(button);
 }
 function generateJSON(){
   var obj = {};
-  obj._v = '1.0'; // JSON Version, in case structure changes later
+  obj._v = '1.1'; // JSON Version, in case structure changes later
   obj.beacon = document.getElementById('beacon').value;
   obj.planet = document.getElementById('planetName').value;
   obj.star = document.getElementById('starName').value;
@@ -91,6 +110,7 @@ function generateJSON(){
     obj.plants.ground[i] = {};
     obj.plants.ground[i].name = arr[i].querySelector('.name').value;
     obj.plants.ground[i].image = arr[i].querySelector('.image').value;
+    obj.plants.ground[i].color = arr[i].querySelector('.color').value;
     obj.plants.ground[i].general = [];
     var bullets = arr[i].querySelectorAll('.input input');
     for (var j = 0; j < bullets.length; j++)
@@ -102,6 +122,8 @@ function generateJSON(){
     obj.plants.tree[i] = {};
     obj.plants.tree[i].name = arr[i].querySelector('.name').value;
     obj.plants.tree[i].image = arr[i].querySelector('.image').value;
+    obj.plants.ground[i].bark = arr[i].querySelector('.bark').value;
+    obj.plants.ground[i].color = arr[i].querySelector('.color').value;
     obj.plants.tree[i].general = [];
     var bullets = arr[i].querySelectorAll('.input input');
     for (var j = 0; j < bullets.length; j++)
@@ -113,6 +135,7 @@ function generateJSON(){
     obj.plants.aquatic[i] = {};
     obj.plants.aquatic[i].name = arr[i].querySelector('.name').value;
     obj.plants.aquatic[i].image = arr[i].querySelector('.image').value;
+    obj.plants.aquatic[i].color = arr[i].querySelector('.color').value;
     obj.plants.aquatic[i].general = [];
     var bullets = arr[i].querySelectorAll('.input input');
     for (var j = 0; j < bullets.length; j++)
@@ -125,6 +148,7 @@ function generateJSON(){
     obj.animals.ground[i] = {};
     obj.animals.ground[i].name = arr[i].querySelector('.name').value;
     obj.animals.ground[i].image = arr[i].querySelector('.image').value;
+    obj.animals.ground[i].legs = arr[i].querySelector('.legs').value;
     obj.animals.ground[i].general = [];
     var bullets = arr[i].querySelectorAll('.input input');
     for (var j = 0; j < bullets.length; j++)
@@ -171,7 +195,7 @@ function generateMarkdown(){
       md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
     else
       md += '**' + arr[i].querySelector('.name').value + '**';
-    md += '<br><br>';
+    md += '<br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
     var bullets = arr[i].querySelectorAll('.input input');
     for (var j = 0; j < bullets.length; j++){
       md += '* '+ bullets[j].value +'<br>';
@@ -184,7 +208,7 @@ function generateMarkdown(){
       md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
     else
       md += '**' + arr[i].querySelector('.name').value + '**';
-    md += '<br><br>';
+    md += '<br>**Bark Color:** ' + arr[i].querySelector('.bark').value + '<br><br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
     var bullets = arr[i].querySelectorAll('.input input');
     for (var j = 0; j < bullets.length; j++){
       md += '* '+ bullets[j].value +'<br>';
@@ -197,7 +221,7 @@ function generateMarkdown(){
       md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
     else
       md += '**' + arr[i].querySelector('.name').value + '**';
-    md += '<br><br>';
+    md += '<br>**Legs:** ' + arr[i].querySelector('.legs').value + '<br><br>';
     var bullets = arr[i].querySelectorAll('.input input');
     for (var j = 0; j < bullets.length; j++){
       md += '* '+ bullets[j].value +'<br>';
@@ -215,7 +239,7 @@ function generateMarkdown(){
       md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**';
     else
       md += '**' + arr[i].querySelector('.name').value + '**';
-    md += '<br><br>';
+    md += '<br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
     var bullets = arr[i].querySelectorAll('.input input');
     for (var j = 0; j < bullets.length; j++){
       md += '* '+ bullets[j].value +'<br>';
