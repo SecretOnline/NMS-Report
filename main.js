@@ -268,9 +268,9 @@ function generateMarkdown() {
     md += '<br>####Plants: <br><br>';
     for (i = 0; i < arr.length; i++) {
       if (arr[i].querySelector('.image').value)
-        md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**  ';
+        md += '#####[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')';
       else
-        md += '**' + arr[i].querySelector('.name').value + '**  ';
+        md += '#####' + arr[i].querySelector('.name').value;
       md += '<br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
       bullets = arr[i].querySelectorAll('.input input');
       for (j = 0; j < bullets.length; j++) {
@@ -283,9 +283,9 @@ function generateMarkdown() {
     md += '<br>####Trees: <br><br>';
     for (i = 0; i < arr.length; i++) {
       if (arr[i].querySelector('.image').value)
-        md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**  ';
+        md += '#####[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value;
       else
-        md += '**' + arr[i].querySelector('.name').value + '**  ';
+        md += '#####' + arr[i].querySelector('.name').value;
       md += '<br>**Bark Color:** ' + arr[i].querySelector('.bark').value + '<br><br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
       bullets = arr[i].querySelectorAll('.input input');
       for (j = 0; j < bullets.length; j++) {
@@ -298,9 +298,9 @@ function generateMarkdown() {
     md += '<br>####Ground Creatures: <br><br>';
     for (i = 0; i < arr.length; i++) {
       if (arr[i].querySelector('.image').value)
-        md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**  ';
+        md += '#####[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value;
       else
-        md += '**' + arr[i].querySelector('.name').value + '**  ';
+        md += '#####' + arr[i].querySelector('.name').value;
       md += '<br>**Legs:** ' + arr[i].querySelector('.legs').value + '<br><br>';
       bullets = arr[i].querySelectorAll('.input input');
       for (j = 0; j < bullets.length; j++) {
@@ -331,9 +331,9 @@ function generateMarkdown() {
     md += '<br>####Plants: <br><br>';
     for (i = 0; i < arr.length; i++) {
       if (arr[i].querySelector('.image').value)
-        md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**  ';
+        md += '#####[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value;
       else
-        md += '**' + arr[i].querySelector('.name').value + '**  ';
+        md += '#####' + arr[i].querySelector('.name').value;
       md += '<br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
       bullets = arr[i].querySelectorAll('.input input');
       for (j = 0; j < bullets.length; j++) {
@@ -346,9 +346,9 @@ function generateMarkdown() {
     md += '<br>####Fish: <br><br>';
     for (i = 0; i < arr.length; i++) {
       if (arr[i].querySelector('.image').value)
-        md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**  ';
+        md += '#####[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value;
       else
-        md += '**' + arr[i].querySelector('.name').value + '**  ';
+        md += '#####' + arr[i].querySelector('.name').value;
       md += '<br><br>';
       bullets = arr[i].querySelectorAll('.input input');
       for (j = 0; j < bullets.length; j++) {
