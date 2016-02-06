@@ -1,10 +1,11 @@
 function init() {
   'use strict';
   var arr = document.querySelectorAll('.inputContainer');
-  for (var i = 0; i < arr.length; i++)
+  var i;
+  for (i = 0; i < arr.length; i++)
     addAddButton(arr[i]);
   arr = document.querySelectorAll('.detailContainer');
-  for (var i = 0; i < arr.length; i++)
+  for (i = 0; i < arr.length; i++)
     addAddButton(arr[i]);
   var button = document.getElementById('genMD');
   button.addEventListener('click', function() {
@@ -57,7 +58,7 @@ function addTree(parent) {
 }
 
 function addAddButton(parent) {
-  var button = document.createElement('button')
+  var button = document.createElement('button');
   button.type = 'button';
   button.innerHTML = '<img src="ic_add_black_24px.svg" alt="ADD">';
   button.classList.add('add');
@@ -89,7 +90,7 @@ function addAddButton(parent) {
 }
 
 function addRemoveButton(parent) {
-  var button = document.createElement('button')
+  var button = document.createElement('button');
   button.type = 'button';
   button.innerHTML = '<img src="ic_delete_black_24px.svg" alt="REMOVE">';
   button.classList.add('remove');
@@ -100,6 +101,7 @@ function addRemoveButton(parent) {
 }
 
 function generateJSON() {
+  var i, j, arr, bullets;
   var obj = {};
   obj._v = '1.1'; // JSON Version, in case structure changes later
   obj.beacon = document.getElementById('beacon').value;
@@ -109,91 +111,92 @@ function generateJSON() {
   obj.discoverer = document.getElementById('discoverer').value;
   obj.general = {};
   obj.general.space = [];
-  var arr = document.querySelectorAll('#spaceFeatures input');
-  for (var i = 0; i < arr.length; i++)
+  arr = document.querySelectorAll('#spaceFeatures input');
+  for (i = 0; i < arr.length; i++)
     obj.general.space[i] = arr[i].value;
   obj.general.atmosphere = [];
   arr = document.querySelectorAll('#atmosphere input');
-  for (var i = 0; i < arr.length; i++)
+  for (i = 0; i < arr.length; i++)
     obj.general.atmosphere[i] = arr[i].value;
   obj.general.minerals = [];
   arr = document.querySelectorAll('#minerals input');
-  for (var i = 0; i < arr.length; i++)
+  for (i = 0; i < arr.length; i++)
     obj.general.minerals[i] = arr[i].value;
   obj.general.ground = [];
   arr = document.querySelectorAll('#ground input');
-  for (var i = 0; i < arr.length; i++)
+  for (i = 0; i < arr.length; i++)
     obj.general.ground[i] = arr[i].value;
   obj.general.aquatic = [];
   arr = document.querySelectorAll('#water input');
-  for (var i = 0; i < arr.length; i++)
+  for (i = 0; i < arr.length; i++)
     obj.general.aquatic[i] = arr[i].value;
   obj.plants = {};
   obj.plants.ground = [];
-  var arr = document.querySelectorAll('#groundPlants .detail');
-  for (var i = 0; i < arr.length; i++) {
+  arr = document.querySelectorAll('#groundPlants .detail');
+  for (i = 0; i < arr.length; i++) {
     obj.plants.ground[i] = {};
     obj.plants.ground[i].name = arr[i].querySelector('.name').value;
     obj.plants.ground[i].image = arr[i].querySelector('.image').value;
     obj.plants.ground[i].color = arr[i].querySelector('.color').value;
     obj.plants.ground[i].general = [];
-    var bullets = arr[i].querySelectorAll('.input input');
-    for (var j = 0; j < bullets.length; j++)
+    bullets = arr[i].querySelectorAll('.input input');
+    for (j = 0; j < bullets.length; j++)
       obj.plants.ground[i].general[j] = bullets[j].value;
   }
   obj.plants.tree = [];
-  var arr = document.querySelectorAll('#trees .detail');
-  for (var i = 0; i < arr.length; i++) {
+  arr = document.querySelectorAll('#trees .detail');
+  for (i = 0; i < arr.length; i++) {
     obj.plants.tree[i] = {};
     obj.plants.tree[i].name = arr[i].querySelector('.name').value;
     obj.plants.tree[i].image = arr[i].querySelector('.image').value;
     obj.plants.ground[i].bark = arr[i].querySelector('.bark').value;
     obj.plants.ground[i].color = arr[i].querySelector('.color').value;
     obj.plants.tree[i].general = [];
-    var bullets = arr[i].querySelectorAll('.input input');
-    for (var j = 0; j < bullets.length; j++)
+    bullets = arr[i].querySelectorAll('.input input');
+    for (j = 0; j < bullets.length; j++)
       obj.plants.tree[i].general[j] = bullets[j].value;
   }
   obj.plants.aquatic = [];
-  var arr = document.querySelectorAll('#waterPlants .detail');
-  for (var i = 0; i < arr.length; i++) {
+  arr = document.querySelectorAll('#waterPlants .detail');
+  for (i = 0; i < arr.length; i++) {
     obj.plants.aquatic[i] = {};
     obj.plants.aquatic[i].name = arr[i].querySelector('.name').value;
     obj.plants.aquatic[i].image = arr[i].querySelector('.image').value;
     obj.plants.aquatic[i].color = arr[i].querySelector('.color').value;
     obj.plants.aquatic[i].general = [];
-    var bullets = arr[i].querySelectorAll('.input input');
-    for (var j = 0; j < bullets.length; j++)
+    bullets = arr[i].querySelectorAll('.input input');
+    for (j = 0; j < bullets.length; j++)
       obj.plants.aquatic[i].general[j] = bullets[j].value;
   }
   obj.animals = {};
   obj.animals.ground = [];
-  var arr = document.querySelectorAll('#groundAnimals .detail');
-  for (var i = 0; i < arr.length; i++) {
+  arr = document.querySelectorAll('#groundAnimals .detail');
+  for (i = 0; i < arr.length; i++) {
     obj.animals.ground[i] = {};
     obj.animals.ground[i].name = arr[i].querySelector('.name').value;
     obj.animals.ground[i].image = arr[i].querySelector('.image').value;
     obj.animals.ground[i].legs = arr[i].querySelector('.legs').value;
     obj.animals.ground[i].general = [];
-    var bullets = arr[i].querySelectorAll('.input input');
-    for (var j = 0; j < bullets.length; j++)
+    bullets = arr[i].querySelectorAll('.input input');
+    for (j = 0; j < bullets.length; j++)
       obj.animals.ground[i].general[j] = bullets[j].value;
   }
   obj.animals.aquatic = [];
-  var arr = document.querySelectorAll('#waterAnimals .detail');
-  for (var i = 0; i < arr.length; i++) {
+  arr = document.querySelectorAll('#waterAnimals .detail');
+  for (i = 0; i < arr.length; i++) {
     obj.animals.aquatic[i] = {};
     obj.animals.aquatic[i].name = arr[i].querySelector('.name').value;
     obj.animals.aquatic[i].image = arr[i].querySelector('.image').value;
     obj.animals.aquatic[i].general = [];
-    var bullets = arr[i].querySelectorAll('.input input');
-    for (var j = 0; j < bullets.length; j++)
+    bullets = arr[i].querySelectorAll('.input input');
+    for (j = 0; j < bullets.length; j++)
       obj.animals.aquatic[i].general[j] = bullets[j].value;
   }
   return JSON.stringify(obj);
 }
 
 function generateMarkdown() {
+  var i, j, arr, bullets;
   var md = "";
   if (document.getElementById('beacon').value !== "") {
     md += '#Beacon Number: ' + document.getElementById('beacon').value + '<br>';
@@ -213,10 +216,10 @@ function generateMarkdown() {
   if (md !== "") {
     md += '<br><br>';
   }
-  var arr = document.querySelectorAll('#spaceFeatures input');
+  arr = document.querySelectorAll('#spaceFeatures input');
   if (arr.length !== 0) {
     md += '##Space Features: <br><br>';
-    for (var i = 0; i < arr.length; i++) {
+    for (i = 0; i < arr.length; i++) {
       md += '* ' + arr[i].value + '<br>';
     }
     md += '<br><br>';
@@ -230,15 +233,15 @@ function generateMarkdown() {
     document.querySelector('#water input') ||
     document.querySelector('#waterPlants .detail') ||
     document.querySelector('#fish .detail')) {
-    md += '##Planet Features: <br><br>'
+    md += '##Planet Features: <br><br>';
   }
-  var arr = document.querySelectorAll('#atmosphere input');
+  arr = document.querySelectorAll('#atmosphere input');
   if (arr.length !== 0) {
     md += '###Atmosphere: <br><br>';
-    for (var i = 0; i < arr.length; i++) {
+    for (i = 0; i < arr.length; i++) {
       md += '* ' + arr[i].value + '<br>';
     }
-    md += '<br>'
+    md += '<br>';
   }
   if (document.querySelector('#ground input') ||
     document.querySelector('#groundPlants .detail') ||
@@ -246,61 +249,61 @@ function generateMarkdown() {
     document.querySelector('#groundAnimals .detail')) {
     md += '###Ground:';
   }
-  var arr = document.querySelectorAll('#minerals input');
+  arr = document.querySelectorAll('#minerals input');
   if (arr.length !== 0) {
-    md += '<br>###Minerals: <br><br>'
-    for (var i = 0; i < arr.length; i++) {
+    md += '<br>###Minerals: <br><br>';
+    for (i = 0; i < arr.length; i++) {
       md += '* ' + arr[i].value + '<br>';
     }
   }
-  var arr = document.querySelectorAll('#ground input');
+  arr = document.querySelectorAll('#ground input');
   if (arr.length !== 0) {
-    md += '<br>###General Description: <br><br>'
-    for (var i = 0; i < arr.length; i++) {
+    md += '<br>###General Description: <br><br>';
+    for (i = 0; i < arr.length; i++) {
       md += '* ' + arr[i].value + '<br>';
     }
   }
-  var arr = document.querySelectorAll('#groundPlants .detail');
+  arr = document.querySelectorAll('#groundPlants .detail');
   if (arr.length !== 0) {
     md += '<br>####Plants: <br><br>';
-    for (var i = 0; i < arr.length; i++) {
+    for (i = 0; i < arr.length; i++) {
       if (arr[i].querySelector('.image').value)
         md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**  ';
       else
         md += '**' + arr[i].querySelector('.name').value + '**  ';
       md += '<br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
-      var bullets = arr[i].querySelectorAll('.input input');
-      for (var j = 0; j < bullets.length; j++) {
+      bullets = arr[i].querySelectorAll('.input input');
+      for (j = 0; j < bullets.length; j++) {
         md += '* ' + bullets[j].value + '<br><br>';
       }
     }
   }
-  var arr = document.querySelectorAll('#trees .detail');
+  arr = document.querySelectorAll('#trees .detail');
   if (arr.length !== 0) {
     md += '<br>####Trees: <br><br>';
-    for (var i = 0; i < arr.length; i++) {
+    for (i = 0; i < arr.length; i++) {
       if (arr[i].querySelector('.image').value)
         md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**  ';
       else
         md += '**' + arr[i].querySelector('.name').value + '**  ';
       md += '<br>**Bark Color:** ' + arr[i].querySelector('.bark').value + '<br><br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
-      var bullets = arr[i].querySelectorAll('.input input');
-      for (var j = 0; j < bullets.length; j++) {
+      bullets = arr[i].querySelectorAll('.input input');
+      for (j = 0; j < bullets.length; j++) {
         md += '* ' + bullets[j].value + '<br><br>';
       }
     }
   }
-  var arr = document.querySelectorAll('#groundAnimals .detail');
+  arr = document.querySelectorAll('#groundAnimals .detail');
   if (arr.length !== 0) {
     md += '<br>####Ground Creatures: <br><br>';
-    for (var i = 0; i < arr.length; i++) {
+    for (i = 0; i < arr.length; i++) {
       if (arr[i].querySelector('.image').value)
         md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**  ';
       else
         md += '**' + arr[i].querySelector('.name').value + '**  ';
       md += '<br>**Legs:** ' + arr[i].querySelector('.legs').value + '<br><br>';
-      var bullets = arr[i].querySelectorAll('.input input');
-      for (var j = 0; j < bullets.length; j++) {
+      bullets = arr[i].querySelectorAll('.input input');
+      for (j = 0; j < bullets.length; j++) {
         md += '* ' + bullets[j].value + '<br><br>';
       }
     }
@@ -316,39 +319,39 @@ function generateMarkdown() {
     document.querySelector('#fish .detail')) {
     md += '###Water:';
   }
-  var arr = document.querySelectorAll('#water input');
+  arr = document.querySelectorAll('#water input');
   if (arr.length !== 0) {
     md += '<br>####General Information: <br><br>';
-    for (var i = 0; i < arr.length; i++) {
+    for (i = 0; i < arr.length; i++) {
       md += '* ' + arr[i].value + '<br>';
     }
   }
-  var arr = document.querySelectorAll('#waterPlants .detail');
+  arr = document.querySelectorAll('#waterPlants .detail');
   if (arr.length !== 0) {
     md += '<br>####Plants: <br><br>';
-    for (var i = 0; i < arr.length; i++) {
+    for (i = 0; i < arr.length; i++) {
       if (arr[i].querySelector('.image').value)
         md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**  ';
       else
         md += '**' + arr[i].querySelector('.name').value + '**  ';
       md += '<br>**Foliage Color:** ' + arr[i].querySelector('.color').value + '<br><br>';
-      var bullets = arr[i].querySelectorAll('.input input');
-      for (var j = 0; j < bullets.length; j++) {
+      bullets = arr[i].querySelectorAll('.input input');
+      for (j = 0; j < bullets.length; j++) {
         md += '* ' + bullets[j].value + '<br><br>';
       }
     }
   }
-  var arr = document.querySelectorAll('#fish .detail');
+  arr = document.querySelectorAll('#fish .detail');
   if (arr.length !== 0) {
     md += '<br>####Fish: <br><br>';
-    for (var i = 0; i < arr.length; i++) {
+    for (i = 0; i < arr.length; i++) {
       if (arr[i].querySelector('.image').value)
         md += '**[' + arr[i].querySelector('.name').value + '](' + arr[i].querySelector('.image').value + ')**  ';
       else
         md += '**' + arr[i].querySelector('.name').value + '**  ';
       md += '<br><br>';
-      var bullets = arr[i].querySelectorAll('.input input');
-      for (var j = 0; j < bullets.length; j++) {
+      bullets = arr[i].querySelectorAll('.input input');
+      for (j = 0; j < bullets.length; j++) {
         md += '* ' + bullets[j].value + '<br><br>';
       }
     }
@@ -376,7 +379,7 @@ function showModal(text) {
   var quote = document.createElement('blockquote');
   quote.innerHTML = text;
   var help = document.createElement('p');
-  help.innerHTML = 'Something wrong? Submit an issue on <a href="https://github.com/SecretOnline/NMS-Report">GitHub</a>'
+  help.innerHTML = 'Something wrong? Submit an issue on <a href="https://github.com/SecretOnline/NMS-Report">GitHub</a>';
   var modal = document.createElement('div');
   modal.id = 'modal';
   modal.appendChild(close);
